@@ -4,9 +4,9 @@
 <%
 try {
     String driver = "org.postgresql.Driver";
-    String url = "jdbc:postgresql://localhost/mbms";
-    String username = "postgres";
-    String password = "postgres";
+    String url = "jdbc:postgresql://95.216.35.146/mbms";
+    String username = "mbms_ro";
+    String password = "J<`7XAe+?u4oLLZge&s=e\"%;/(Fy<4>?";
     String myDataField = null;
     String myQuery = "select json_agg(p) from (select distinct EXTRACT(YEAR FROM fecha) as year from samples_muestreo order by year) p";
     Connection myConnection = null;

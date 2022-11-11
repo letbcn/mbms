@@ -8,7 +8,7 @@ try {
     String username = "mbms_ro";
     String password = "J<`7XAe+?u4oLLZge&s=e\"%;/(Fy<4>?";
     String myDataField = null;
-    String myQuery = "select json_agg(p) from (select * from platges_pnt t  order by name) p ";
+    String myQuery = "select json_agg(p) from (select * from parcs_limits t  order by layer) p";
     Connection myConnection = null;
     PreparedStatement myPreparedStatement = null;
     ResultSet myResultSet = null;
