@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.4.4/d3.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<title>Indicadors LET</title>
+<script lang="javascript" src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@master/dist/latest/bootstrap-autocomplete.min.js"></script>
+<script src="https://unpkg.com/underscore@1.13.4/underscore-umd-min.js"></script>
+
+ <!-- PivotTable.js libs from ../dist -->
+ <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="dist/pivot.css">
+<script type="text/javascript" src="dist/pivot.js"></script>
+<script type="text/javascript" src="dist/c3_renderers.js"></script>
+<script>
+function calcula_any(valor){
+    filtrat();
+    myChart1.destroy();
+    grafic1();
+    myChart2.destroy();
+    grafic2();
+    grafic3();
+}
+function calcula_parc(valor){
+    filtrat();
+    myChart1.destroy();
+    grafic1();
+    myChart2.destroy();
+    grafic2();
+    grafic3();
+}
+
+function calcula_especie(valor){
+    filtrat();
+    myChart1.destroy();
+    grafic1();
+    myChart2.destroy();
+    grafic2();
+    grafic3();
+}
+
+</script>
+
+<script src="grafic1.js"></script>
+<script src="grafic2.js"></script>
+<script src="grafic3.js"></script>
+<script src="utils.js"></script>
+<script src="https://lablet.uab.cat/visorlet/js/iframe-adaptation-iframe.js"></script>
+<style>
+    .boto{
+        display:none;
+        float:right;
+        position:relative;
+        top: 10px;
+        height:10px;
+        border: none;
+        outline: none !important;
+        background-color: transparent;
+    }
+    .fa-circle-info {
+        color: gray;
+        }
+
+</style>
+</head>
+<body>
+    <div class="container" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;" >
+        <div class="row" style="height:30px"></div>
+        <div class="row ">
+            <div class="col-1 "></div>
+            <div class="col-md-auto  d-flex align-items-center" >Seleccionar any:</div>
+            <div class="col-2  d-flex align-items-center" style="font-size: 12px;">
+                <select class="form-control basicAutoSelect" style="font-size:12px;font-weight:bold;" name="fecha"  id="fecha" onchange="calcula_any(this.value)">
+                </select>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-md-auto  d-flex align-items-center" >Seleccionar parcs i platges:</div>
+            <div class="col-3  d-flex align-items-center" style="font-size: 12px ;">
+                <select class="form-control basicAutoSelect" style="font-size:12px;font-weight:bold;" name="area" id="area" onchange="calcula_parc(this.value)" >
+                </select>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-md-auto  d-flex align-items-center" >Seleccionar espècie:</div>
+            <div class="col-3  d-flex align-items-center" style="font-size: 12px ;">
+                <select class="form-control basicAutoSelect" style="font-size:12px;font-weight:bold;" name="especie" id="especie" onchange="calcula_especie(this.value)" >
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="width: 98%;" >
+        <div class="row" style="height: 30px;">
+           <!-- <div class="col-md-auto border" style="background-color: rgba(164,208,139,255);font-family: Arial, Helvetica, sans-serif;font-weight: bold;">MONITOR mBMS</div>-->
+        </div>
+    </div>
+    <div class="container-fluid "  id="contenidor" style="width: 98%;">
+        <div class="row" style="height: 10px;"></div>
+		
+        <div class="row justify-content-center" >
+            <div class="col-4 " style="background-color: rgba(225,239,216,255);">
+				<br>
+                <!--<button type="button" id="1" class="boto"  onclick="omple('1');" data-toggle="modal" data-target="#exampleModal"> <b><i class="fa-solid fa-circle-info"></i></b></button>-->
+                <canvas id="myChart1" style="width:100%;height:100%;background-color: rgba(255,255,255,255);"></canvas>
+				<br>
+            </div>
+            <div class="col-5 " style="background-color: rgba(225,239,216,255);">
+                <!--<button type="button" id="2" class="boto"  onclick="omple('2');" data-toggle="modal" data-target="#exampleModal"> <b><i class="fa-solid fa-circle-info" ></i></b></button>-->
+                <br>
+				<canvas id="myChart2" style="width:100%;height:300px;background-color: rgba(255,255,255,255);"></canvas>
+				<br>
+            </div>
+        </div>
+	</div>	
+        <div class="row" style="height: 10px;"></div>
+        <div class="row justify-content-center">
+            <div class="col-10  text-center  align-items-center justify-content-center" style="color:#6d6e6d" >
+                <div class="row" style="height: 10px;"></div>
+                <!--<button type="button" id="3" class="boto"  onclick="omple('3');" data-toggle="modal" data-target="#exampleModal"> <b><i class="fa-solid fa-circle-info"></i></b></button>-->
+                <b>Calendari d'espècies</b>
+                <div class="row" style="height: 10px;"></div>
+                <div class="row justify-content-center"  id="myChart3" style="width:98%;height:95%;"></div>
+               
+            </div>
+   
+</div>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h6 class="modal-title" id="titol">Info</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div id="contingut" class="modal-body" style="color: gray;">
+        ...
+    </div>
+  </div>
+</div>
+</div>
+</body>
+<script>
+Chart.register(ChartDataLabels);
+Chart.defaults.set('plugins.datalabels', {
+    color: '#FFFFFF',
+    display:false
+    });
+Chart.defaults.set('plugins.title', {
+    font: {
+      size: 14
+    }
+});
+
+
+
+function omple(div){
+    switch (div){
+        case "1":  titol='Variabilitat climàtica ';
+                    texte= "Anomalia de la temperatura mitjana i de la precipitació anual respecte un període de referència fixat per l'IPCC (1961-1990)";
+                    temporalitat='2008-2021';
+                    font='SMC';
+                    break;
+        case "2":  titol='Cobertes del sòl';
+                    texte= "Evolució de les cobertes del sòl ";
+                    temporalitat='1987-2017';
+                    font='CREAF';
+                    break;
+        case "3":  titol='Incendis forestals';
+                    texte= "Superfície cremada (1ha)";
+                    temporalitat='1986-2020';
+                    font='GENCAT';
+                    break;
+    }
+    document.getElementById('titol').innerHTML='<b>'+titol+'</b>';
+    document.getElementById('contingut').innerHTML='<b>Descripció: </b>'+texte + '<br><b>Temporalitat</b>: '+ temporalitat + '<br><b>Font</b>: ' + font;
+}
+</script>
+
+
+</body>
+</html>
+<script>
+$(document).ready(function () {
+   parcs();
+   anys();
+   especies();
+});
+</script>
