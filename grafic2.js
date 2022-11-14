@@ -57,7 +57,7 @@ function grafic2b() {
                         datasets: [
                             {
                                 type: 'line',
-                                label: "Observacions / Mostrejos",
+                                label: "Individus per mostreig",
                                 yAxisID: 'A',
                                 data:most,
                                 borderColor: 'rgba(75, 192, 192,0)',
@@ -67,7 +67,7 @@ function grafic2b() {
                             },
                             {
                                 type: 'bar',
-                                label: "Observacions",
+                                label: "Individus",
                                 yAxisID: 'B',
                                 data: _.countBy(filtre_observa, function(data) { return data.nombre_especie; }),
                                 backgroundColor: 'rgba(68,114,196, 1)',
@@ -105,7 +105,7 @@ function grafic2b() {
                                   position: 'right',
                                   title: {
                                       display: true,
-                                      text: ["Observacions per mostreig"]
+                                      text: ["Individus per mostreig"]
                                     },
                                   beginAtZero: true,
                                   ticks: {
@@ -118,7 +118,7 @@ function grafic2b() {
                                 position: 'left',
                                 title: {
                                     display: true,
-                                    text: ["Número observacions"]
+                                    text: ["Nombre d'individus"]
                                   }
                             },
                             x: {

@@ -24,30 +24,6 @@ function grafic1(){
     }
     grafic1b();
   });
-  /*$.ajax({
-    type:"GET", 
-    url: "observadors.jsp", 
-    dataType: "json",
-    success: function(data) {
-      observadors = data;
-      if (document.getElementById("fecha").value != '-') {
-        filtre_observadors = observadors.filter(element => element.year == document.getElementById("fecha").value );
-      } else {
-          filtre_observadors = observadors;
-      }
-      if (document.getElementById("area").value != '-') {
-          filtre_observadors = filtre_observadors.filter(element => element.parc == document.getElementById("area").value );
-      } else {
-          filtre_observadors = filtre_observadors;
-      }
-      if (document.getElementById("especie").value != '-') {
-        filtre_observadors = filtre_observadors.filter(element => element.nombre_especie == document.getElementById("especie").value );
-      } else {
-        filtre_observadors = filtre_observadors;
-      }
-      grafic1b();
-    }
-  });*/
 }
 
 function grafic1b() {    
@@ -68,7 +44,7 @@ function grafic1b() {
                         datasets: [
                             {
                                 type: 'line',
-                                label: "Voluntaris",
+                                label: "Voluntaris/es",
                                 yAxisID: 'A',
                                 data:_.countBy(filtre_observadors, function(data) { return data.mes + " " + data.quinzena ; }),
                                 borderColor: 'rgba(75, 192, 192,0)',
@@ -78,7 +54,7 @@ function grafic1b() {
                             },
                             {
                               type: 'bar',
-                              label: "Mostrejos",
+                              label: "Nombre de mostrejos",
                               yAxisID: 'B',
                               data: _.countBy(filtre_observa, function(data) { return data.mes + " " + data.quinzena ; }),
                               backgroundColor: 'rgba(146,168,80, 1)',
@@ -100,7 +76,7 @@ function grafic1b() {
                         plugins: {
                             title:{
                                 display: 'true',
-                                text:"Gestió de dades"
+                                text:"Dades de participació"
                             },
                             legend:{
                                 position:'bottom',
