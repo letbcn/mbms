@@ -170,29 +170,6 @@ Chart.defaults.set('plugins.title', {
     }
 });
 
-
-
-function omple(div){
-    switch (div){
-        case "1":  titol='Variabilitat climàtica ';
-                    texte= "Anomalia de la temperatura mitjana i de la precipitació anual respecte un període de referència fixat per l'IPCC (1961-1990)";
-                    temporalitat='2008-2021';
-                    font='SMC';
-                    break;
-        case "2":  titol='Cobertes del sòl';
-                    texte= "Evolució de les cobertes del sòl ";
-                    temporalitat='1987-2017';
-                    font='CREAF';
-                    break;
-        case "3":  titol='Incendis forestals';
-                    texte= "Superfície cremada (1ha)";
-                    temporalitat='1986-2020';
-                    font='GENCAT';
-                    break;
-    }
-    document.getElementById('titol').innerHTML='<b>'+titol+'</b>';
-    document.getElementById('contingut').innerHTML='<b>Descripció: </b>'+texte + '<br><b>Temporalitat</b>: '+ temporalitat + '<br><b>Font</b>: ' + font;
-}
 </script>
 
 

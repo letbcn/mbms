@@ -43,7 +43,9 @@ function grafic2b() {
                 const ctx2 = document.getElementById('myChart2').getContext('2d');
                 ctx2.canvas.width = 300;
                 ctx2.canvas.height = 240;
-                most = _.countBy(filtre_mostrejos, function(data) { return data.nombre_especie ; });
+                //most = _.countBy(filtre_mostrejos, function(filtre_mostrejos) { return filtre_mostrejos.nombre_especie ; });
+                //obs = _.countBy(filtre_observa, function(filtre_mostrejos) { return filtre_mostrejos.nombre_especie; });
+                most = _.countBy(filtre_mostrejos, function(filtre_mostrejos) { return filtre_mostrejos.nombre_especie ; });
                 obs = _.countBy(filtre_observa, function(data) { return data.nombre_especie; });
                 for (var [key, value] of Object.entries(obs)) {
                   for (var [key2, value2] of Object.entries(most)){

@@ -40,7 +40,7 @@ function grafic1b() {
                 myChart1 = new Chart(ctx, {
                     
                     data: {
-                        labels: ["Març 1a quinzena","Març 2a quinzena","Abril 1a quinzena","Abril 2a quinzena","Maig 1a quinzena","Maig 2a quinzena","Juny 1a quinzena","Juny 2a quinzena","Juliol 1a quinzena","Juliol 2a quinzena","Agost 1a quinzena","Agost 2a quinzena","Setembre 1a quinzena","Setembre 2a quinzena","Octubre 1a quinzena","Octubre 2a quinzena","Novembre 1a quinzena"],
+                        labels: ["Març 1a quinzena","Març 2a quinzena","Abril 1a quinzena","Abril 2a quinzena","Maig 1a quinzena","Maig 2a quinzena","Juny 1a quinzena","Juny 2a quinzena","Juliol 1a quinzena","Juliol 2a quinzena","Agost 1a quinzena","Agost 2a quinzena","Setembre 1a quinzena","Setembre 2a quinzena","Octubre 1a quinzena","Octubre 2a quinzena","Novembre 1a quinzena","Novembre 2a quinzena"],
                         datasets: [
                             {
                                 type: 'line',

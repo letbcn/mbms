@@ -1,7 +1,7 @@
 function grafic3() {     
     $.ajax({
         type:"GET", 
-        url: "observacions.jsp", 
+        url: "mostrejos.jsp", 
         success: function(data) {
                 var utils = $.pivotUtilities;
                 var sortAs =  $.pivotUtilities.sortAs;
@@ -26,7 +26,7 @@ function grafic3() {
                         mes: $.pivotUtilities.sortAs(
                                 ["Març","Abril", "Maig",
                                 "Juny", "Juliol",
-                                "Agost", "Setembre", "Octubre"])
+                                "Agost", "Setembre", "Octubre","Novembre"])
                     }
                     
                 });
