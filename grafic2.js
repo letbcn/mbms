@@ -71,7 +71,7 @@ function grafic2b() {
                                 type: 'bar',
                                 label: "Individus",
                                 yAxisID: 'B',
-                                data: _.countBy(filtre_observa, function(data) { return data.nombre_especie; }),
+                                data: _.countBy(filtre_mostrejos, function(filtre_mostrejos) { return filtre_mostrejos.nombre_especie; }),
                                 backgroundColor: 'rgba(68,114,196, 1)',
                                 datalabels: {
                                     display:true,
