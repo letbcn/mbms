@@ -57,7 +57,7 @@ function grafic1b() {
                                 type: 'line',
                                 label: "Voluntaris",
                                 yAxisID: 'A',
-                                data:_.countBy(filtre_observadors, function(data) { return data.mes + " " + data.quinzena ; }),
+                                data:_.countBy(filtre_observadors, function(filtre_observadors) { return filtre_observadors.mes + " " + filtre_observadors.quinzena ; }),
                                 borderColor: 'rgba(75, 192, 192,0)',
                                 pointRadius:5,
                                 pointBackgroundColor:'rgb(255,0,0)'
