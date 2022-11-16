@@ -1,5 +1,5 @@
 function grafic1(){
-  $.getJSON("observadors.jsp", function(data){
+  $.getJSON("observadors.jsp?especie="+especie.value, function(data){
     observadors = data;
     if (document.getElementById("fecha").value != '-') {
       filtre_observadors = observadors.filter(element => element.year == document.getElementById("fecha").value );
@@ -17,11 +17,6 @@ function grafic1(){
         } else {
             filtre_observadors = filtre_observadors;
         }
-    if (document.getElementById("especie").value != '-') {
-		filtre_observadors = filtre_observadors.filter(element => element.nombre_especie == document.getElementById("especie").value );
-    } else {
-      filtre_observadors = filtre_observadors;
-    }
     grafic1b();
   });
 }
@@ -30,21 +25,37 @@ function grafic1b() {
    
     $.ajax({
         type:"GET", 
-        url: "mostrejos.jsp", 
+        url: "mostrejos_temps.jsp?especie="+especie.value, 
         success: function(data) {
-                observa = data;
-                filtrat();
+			mostrejos_temps = data;
+                if (document.getElementById("fecha").value != '-') {
+			      filtre_most_temps = mostrejos_temps.filter(element => element.year == document.getElementById("fecha").value );
+			    } else {
+			        filtre_most_temps = mostrejos_temps;
+			    }
+			     if (document.getElementById("area").value != '-') {
+			            if (document.getElementById("area").value == 'parcs') {
+							filtre_most_temps = filtre_most_temps.filter(element => element.nombre_ubicacion.startsWith('Parc'));		
+						} else if (document.getElementById("area").value == 'platges') {
+							filtre_most_temps = filtre_most_temps.filter(element => element.nombre_ubicacion.startsWith('Platja'));	
+						} else {
+							filtre_most_temps = filtre_most_temps.filter(element => element.nombre_ubicacion == document.getElementById("area").value );
+						}
+			        } else {
+			            filtre_most_temps = filtre_most_temps;
+			        }
+			
                 const ctx = document.getElementById('myChart1').getContext('2d');
                 ctx.canvas.width = 300;
                 ctx.canvas.height = 300;
                 myChart1 = new Chart(ctx, {
                     
                     data: {
-                        labels: ["Març 1a quinzena","Març 2a quinzena","Abril 1a quinzena","Abril 2a quinzena","Maig 1a quinzena","Maig 2a quinzena","Juny 1a quinzena","Juny 2a quinzena","Juliol 1a quinzena","Juliol 2a quinzena","Agost 1a quinzena","Agost 2a quinzena","Setembre 1a quinzena","Setembre 2a quinzena","Octubre 1a quinzena","Octubre 2a quinzena","Novembre 1a quinzena","Novembre 2a quinzena"],
+                        labels: ["Març 1a quinzena","Març 2a quinzena","Abril 1a quinzena","Abril 2a quinzena","Maig 1a quinzena","Maig 2a quinzena","Juny 1a quinzena","Juny 2a quinzena","Juliol 1a quinzena","Juliol 2a quinzena","Agost 1a quinzena","Agost 2a quinzena","Setembre 1a quinzena","Setembre 2a quinzena","Octubre 1a quinzena","Octubre 2a quinzena","Novembre 1a quinzena"],
                         datasets: [
                             {
                                 type: 'line',
-                                label: "Voluntaris/es",
+                                label: "Voluntaris",
                                 yAxisID: 'A',
                                 data:_.countBy(filtre_observadors, function(data) { return data.mes + " " + data.quinzena ; }),
                                 borderColor: 'rgba(75, 192, 192,0)',
@@ -54,9 +65,9 @@ function grafic1b() {
                             },
                             {
                               type: 'bar',
-                              label: "Nombre de mostrejos",
+                              label: "Mostrejos",
                               yAxisID: 'B',
-                              data: _.countBy(filtre_observa, function(data) { return data.mes + " " + data.quinzena ; }),
+                              data: _.countBy(filtre_most_temps, function(filtre_most_temps) { return filtre_most_temps.mes + " " + filtre_most_temps.quinzena ; }),
                               backgroundColor: 'rgba(146,168,80, 1)',
                               datalabels: {
                                   display:true,
@@ -76,7 +87,7 @@ function grafic1b() {
                         plugins: {
                             title:{
                                 display: 'true',
-                                text:"Dades de participació"
+                                text:"Gestió de dades"
                             },
                             legend:{
                                 position:'bottom',
@@ -105,7 +116,7 @@ function grafic1b() {
                                 position: 'right',
                                 title: {
                                     display: true,
-                                    text: ["Nombre de mostrejos"]
+                                    text: ["Número de mostrejos"]
                                   },
                                   ticks: {
                                     stepSize: 1

@@ -1,9 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.* " %>
 <%@ page import="java.io.*" %>
-<%@page import="org.jooq.*" %>
+
 <%
 try {
     String driver = "org.postgresql.Driver";
+    /*String url = "jdbc:postgresql://localhost/mbms";
+    String username = "postgres";
+    String password = "postgres";*/
     String url = "jdbc:postgresql://95.216.35.146/mbms";
     String username = "mbms_ro";
     String password = "J<`7XAe+?u4oLLZge&s=e\"%;/(Fy<4>?";

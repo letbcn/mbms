@@ -77,7 +77,7 @@ function DistinctRecords(MYJSON,prop) {
 
 function filtrat(){
     if (document.getElementById("fecha").value != '-') {
-        
+        filtre_observa = observa.filter(element => element.year == document.getElementById("fecha").value );
       } else {
           filtre_observa = observa;
       }
