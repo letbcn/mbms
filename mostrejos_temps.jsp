@@ -4,9 +4,12 @@
 <%
 try {
     String driver = "org.postgresql.Driver";
-    String url = "jdbc:postgresql://localhost/mbms";
+    /*String url = "jdbc:postgresql://localhost/mbms";
     String username = "postgres";
-    String password = "postgres";
+    String password = "postgres";*/
+    String url = "jdbc:postgresql://95.216.35.146/mbms";
+    String username = "mbms_ro";
+    String password = "J<`7XAe+?u4oLLZge&s=e\"%;/(Fy<4>?";
     String myDataField = null;
     String myQuery = "";
     if (request.getParameter("especie").equals("-")) {
