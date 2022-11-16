@@ -116,7 +116,7 @@ function grafic1b() {
                                 position: 'right',
                                 title: {
                                     display: true,
-                                    text: ["Número de mostrejos"]
+                                    text: ["Nombre de mostrejos"]
                                   },
                                   ticks: {
                                     stepSize: 1
