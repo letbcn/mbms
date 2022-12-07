@@ -7,7 +7,8 @@ function grafic3() {
                 var sortAs =  $.pivotUtilities.sortAs;
                 var sum = $.pivotUtilities.aggregatorTemplates.sum;
                 var numberFormat = $.pivotUtilities.numberFormat;
-                var intFormat = numberFormat({digitsAfterDecimal: 0});
+                var intFormat = numberFormat({digitsAfterDecimal: 0,thousandsSep:"."});
+                var germanFormat = numberFormat({digitsAfterDecimal: 0},thousandsSep=",", decimalSep=".");
                 var heatmap =  utils.renderers["Heatmap"];
                 observa = data;
                 filtrat();
