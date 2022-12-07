@@ -3,6 +3,7 @@
 
 <%
 try {
+	String driver = "org.postgresql.Driver";
     /*String url = "jdbc:postgresql://localhost/mbms";
     String username = "postgres";
     String password = "postgres";*/
