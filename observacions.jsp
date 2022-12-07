@@ -4,14 +4,15 @@
 <%
 try {
     String driver = "org.postgresql.Driver";
-    /*String url = "jdbc:postgresql://localhost/mbms";
+    String url = "jdbc:postgresql://localhost/mbms";
     String username = "postgres";
-    String password = "postgres";*/
-    String url = "jdbc:postgresql://95.216.35.146/mbms";
+    String password = "postgres";
+    /*String url = "jdbc:postgresql://95.216.35.146/mbms";
     String username = "mbms_ro";
-    String password = "J<`7XAe+?u4oLLZge&s=e\"%;/(Fy<4>?";
+    String password = "J<`7XAe+?u4oLLZge&s=e\"%;/(Fy<4>?";*/
     String myDataField = null;
     String myQuery = "select json_agg(p) from (select m.autor_id,r.especie_id,e.nombre_especie,su.nombre_ubicacion, fecha," +
+    " r.ind_transecto+r.ind_paseo+r.m_transecto +r.m_paseo +r.f_transecto +r.f_paseo + r.f_transecto_2 +r.f_transecto_3 +r.ind_transecto_2 +r.ind_transecto_3 +r.m_transecto_2 +r.m_transecto_3  as suma," +
     " case when EXTRACT(DAY FROM fecha) < 16 then '1a quinzena'  else '2a quinzena' end as quinzena,"+
     " case when EXTRACT(MONTH FROM fecha) = 3 then 'Març' "+
      " when EXTRACT(MONTH FROM fecha) = 4 then 'Abril' "+

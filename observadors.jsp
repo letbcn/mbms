@@ -4,12 +4,12 @@
 <%
 try {
     String driver = "org.postgresql.Driver";
-    /*String url = "jdbc:postgresql://localhost/mbms";
+    String url = "jdbc:postgresql://localhost/mbms";
     String username = "postgres";
-    String password = "postgres";*/
-    String url = "jdbc:postgresql://95.216.35.146/mbms";
+    String password = "postgres";
+    /*String url = "jdbc:postgresql://95.216.35.146/mbms";
     String username = "mbms_ro";
-    String password = "J<`7XAe+?u4oLLZge&s=e\"%;/(Fy<4>?";
+    String password = "J<`7XAe+?u4oLLZge&s=e\"%;/(Fy<4>?";*/
     String myDataField = null;
     String myQuery = "";
     if (request.getParameter("especie").equals("-")) {
@@ -25,8 +25,8 @@ try {
 	    "  when EXTRACT(MONTH FROM fecha) = 10 then 'Octubre' "+
 	    "  when EXTRACT(MONTH FROM fecha) = 11 then 'Novembre' "+
 	    " end AS mes, EXTRACT(YEAR FROM fecha) as year " +
-	    " from samples_recuento r ,samples_muestreo m,samples_ubicacion su where m.id = r.muestreo_id " +
-	    " and m.ubicacion_id = su.id  group by quinzena, mes, m.autor_id, su.nombre_ubicacion, year order by quinzena, mes,nombre_ubicacion,year) p";
+	    " from samples_muestreo m,samples_ubicacion su where " +
+	    "  m.ubicacion_id = su.id  group by quinzena, mes, m.autor_id, su.nombre_ubicacion, year order by quinzena, mes,nombre_ubicacion,year) p";
     } else {
     	 myQuery = "select json_agg(p) from (select m.autor_id,su.nombre_ubicacion," +
      		    " case when EXTRACT(DAY FROM fecha) < 16 then '1a quinzena'  else '2a quinzena' end as quinzena,"+

@@ -4,12 +4,12 @@
 <%
 try {
     String driver = "org.postgresql.Driver";
-    /*String url = "jdbc:postgresql://localhost/mbms";
+   String url = "jdbc:postgresql://localhost/mbms";
     String username = "postgres";
-    String password = "postgres";*/
-    String url = "jdbc:postgresql://95.216.35.146/mbms";
+    String password = "postgres";
+    /*String url = "jdbc:postgresql://95.216.35.146/mbms";
     String username = "mbms_ro";
-    String password = "J<`7XAe+?u4oLLZge&s=e\"%;/(Fy<4>?";
+    String password = "J<`7XAe+?u4oLLZge&s=e\"%;/(Fy<4>?";*/
     String myDataField = null;
     String myQuery = "select json_agg(p) from (select * from samples_ubicacion t  order by nombre_ubicacion) p";
     Connection myConnection = null;

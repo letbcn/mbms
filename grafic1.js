@@ -87,7 +87,7 @@ function grafic1b() {
                         plugins: {
                             title:{
                                 display: 'true',
-                                text:"Gestió de dades"
+                                text:"Dades de participació"
                             },
                             legend:{
                                 position:'bottom',

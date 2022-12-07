@@ -1,7 +1,7 @@
 function grafic2(){
     $.ajax({
       type:"GET", 
-      url: "mostrejos.jsp", 
+      url: "observacions.jsp", 
       dataType: "json",
       success: function(data) {
         mostrejos = data;
@@ -12,7 +12,7 @@ function grafic2(){
         }
         if (document.getElementById("area").value != '-') {
             if (document.getElementById("area").value == 'parcs') {
-				filtre_mostrejos = filtre_mostrejos.filter(element => element.nombre_ubicacion.startsWith('Parc'));		
+				filtre_mostrejos = filtre_mostrejos.filter(element => element.nombre_ubicacion.startsWith('Platja') == false);		
 			} else if (document.getElementById("area").value == 'platges') {
 				filtre_mostrejos = filtre_mostrejos.filter(element => element.nombre_ubicacion.startsWith('Platja'));	
 			} else {
@@ -46,7 +46,7 @@ function grafic2b() {
                 //most = _.countBy(filtre_mostrejos, function(filtre_mostrejos) { return filtre_mostrejos.nombre_especie ; });
                 //obs = _.countBy(filtre_observa, function(filtre_mostrejos) { return filtre_mostrejos.nombre_especie; });
                 most = _.countBy(filtre_mostrejos, function(filtre_mostrejos) { return filtre_mostrejos.nombre_especie ; });
-                obs = _.countBy(filtre_observa, function(data) { return data.nombre_especie; });
+                obs = filtre_mostrejos.reduce(function (a, x) {a[x.nombre_especie] = (a[x.nombre_especie] ? a[x.nombre_especie] : 0) + x.suma; return a;}, {});
                 for (var [key, value] of Object.entries(obs)) {
                   for (var [key2, value2] of Object.entries(most)){
                     most[key] =  value/value2;
@@ -71,7 +71,7 @@ function grafic2b() {
                                 type: 'bar',
                                 label: "Individus",
                                 yAxisID: 'B',
-                                data: _.countBy(filtre_mostrejos, function(filtre_mostrejos) { return filtre_mostrejos.nombre_especie; }),
+                                data: obs,
                                 backgroundColor: 'rgba(68,114,196, 1)',
                                 datalabels: {
                                     display:true,

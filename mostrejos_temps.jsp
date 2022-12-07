@@ -4,12 +4,12 @@
 <%
 try {
     String driver = "org.postgresql.Driver";
-    /*String url = "jdbc:postgresql://localhost/mbms";
+    String url = "jdbc:postgresql://localhost/mbms";
     String username = "postgres";
-    String password = "postgres";*/
-    String url = "jdbc:postgresql://95.216.35.146/mbms";
+    String password = "postgres";
+    /*String url = "jdbc:postgresql://95.216.35.146/mbms";
     String username = "mbms_ro";
-    String password = "J<`7XAe+?u4oLLZge&s=e\"%;/(Fy<4>?";
+    String password = "J<`7XAe+?u4oLLZge&s=e\"%;/(Fy<4>?";*/
     String myDataField = null;
     String myQuery = "";
     if (request.getParameter("especie").equals("-")) {
@@ -25,10 +25,11 @@ try {
 	    "  when EXTRACT(MONTH FROM fecha) = 10 then 'Octubre' "+
 	    "  when EXTRACT(MONTH FROM fecha) = 11 then 'Novembre' "+
 	    " end AS mes, EXTRACT(YEAR FROM fecha) as year " +
-	    " from samples_recuento r ,samples_muestreo m,samples_ubicacion su,samples_especie se where m.id = r.muestreo_id and se.id = r.especie_id " +
-	    " and m.ubicacion_id = su.id  group by quinzena, mes,su.nombre_ubicacion, year order by quinzena, mes,su.nombre_ubicacion,year) p";
+	    " from samples_muestreo m,samples_ubicacion su where  " +
+	    "  m.ubicacion_id = su.id  order by year) p";
     } else {
     	 myQuery = "select json_agg(p) from (select su.nombre_ubicacion," +
+				 " r.ind_transecto+r.ind_paseo+r.m_transecto +r.m_paseo +r.f_transecto +r.f_paseo + r.f_transecto_2 +r.f_transecto_3 +r.ind_transecto_2 +r.ind_transecto_3 +r.m_transecto_2 +r.m_transecto_3 as suma," +
     		    " case when EXTRACT(DAY FROM fecha) < 16 then '1a quinzena'  else '2a quinzena' end as quinzena,"+
     		    " case when EXTRACT(MONTH FROM fecha) = 3 then 'Març' "+
     		     " when EXTRACT(MONTH FROM fecha) = 4 then 'Abril' "+
@@ -41,7 +42,7 @@ try {
     		    "  when EXTRACT(MONTH FROM fecha) = 11 then 'Novembre' "+
     		    " end AS mes, EXTRACT(YEAR FROM fecha) as year " +
     		    " from samples_recuento r ,samples_muestreo m,samples_ubicacion su,samples_especie se where m.id = r.muestreo_id and se.id = r.especie_id " +
-    		    " and m.ubicacion_id = su.id and se.nombre_especie = '" + request.getParameter("especie") + "' group by quinzena, mes,su.nombre_ubicacion, year order by quinzena, mes,su.nombre_ubicacion,year) p";
+    		    " and m.ubicacion_id = su.id and se.nombre_especie = '" + request.getParameter("especie") + "' group by quinzena, mes,su.nombre_ubicacion, year,suma order by quinzena, mes,su.nombre_ubicacion,year) p";
     }
     Connection myConnection = null;
     PreparedStatement myPreparedStatement = null;

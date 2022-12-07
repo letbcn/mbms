@@ -83,16 +83,16 @@ function filtrat(){
       }
 
     if (document.getElementById("area").value != '-') {
-        filtre_observa = filtre_observa.filter(element => element.nombre_ubicacion == document.getElementById("area").value );
+        if (document.getElementById("area").value == 'parcs') {
+            filtre_observa = filtre_observa.filter(element => element.nombre_ubicacion.startsWith('Platja') == false);		
+        } else if (document.getElementById("area").value == 'platges') {
+            filtre_observa = filtre_observa.filter(element => element.nombre_ubicacion.startsWith('Platja'));	
+        } else {
+            filtre_observa = filtre_observa.filter(element => element.nombre_ubicacion == document.getElementById("area").value );
+        }
     } else {
         filtre_observa = filtre_observa;
     }
-	if (document.getElementById("area").value == 'parcs') {
-		filtre_observa = observa.filter(element => element.nombre_ubicacion.startsWith('Parc'));		
-	}
-	if (document.getElementById("area").value == 'platges') {
-		filtre_observa = observa.filter(element => element.nombre_ubicacion.startsWith('Platja'));		
-	}
     if (document.getElementById("especie").value != '-') {
         filtre_observa = filtre_observa.filter(element => element.nombre_especie == document.getElementById("especie").value );
       } else {
